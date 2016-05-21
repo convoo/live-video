@@ -1,0 +1,36 @@
+{
+  "name": "live-video",
+  "authors": [
+    "Anonymous <anonymous@example.com>"
+  ],
+  "description": "An element providing a solution to no problem in particular.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "live-video.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  },
+  "_release": "aa1df2c202",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "aa1df2c2020d86390c1cbc2682f8ff2e71c45749"
+  },
+  "_source": "git@github.com:convoo/live-video.git",
+  "_target": "master",
+  "_originalSource": "git@github.com:convoo/live-video",
+  "_direct": true
+}
