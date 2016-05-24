@@ -44,6 +44,11 @@ Example:
         height: auto;
       }
       
+      .fullbleed {
+        width: 100%;
+        height: 100%;
+      }
+      
       .grayscale {
         filter: grayscale(100%);
         -webkit-filter: grayscale(100%);
@@ -273,6 +278,14 @@ Example:
           type: Boolean,
           value: false,
           observer: "_responsiveChanged"
+        },
+        /**
+         * `fullbleed` determines whether the video element will take up full width and height based on its parent element
+         */
+        fullbleed: {
+          type: Boolean,
+          value: false,
+          observer: "_fullbleedChanged"
         }
       },
       
@@ -371,13 +384,12 @@ Example:
         }
       },
       _responsiveChanged: function(newVal, oldVal){
-        if(newVal){
-          this.$.liveVideo.classList.add("responsive");
-          this.$.liveCanvas.classList.add("responsive");
-        }else {
-          this.$.liveVideo.classList.remove("responsive");
-          this.$.liveCanvas.classList.remove("responsive");
-        }
+        this.toggleClass("responsive", newVal, this.$.liveVideo);
+        this.toggleClass("responsive", newVal, this.$.liveCanvas);
+      },
+      _fullbleedChanged: function(newVal, oldVal){
+        this.toggleClass("fullbleed", newVal, this.$.liveVideo);
+        this.toggleClass("fullbleed", newVal, this.$.liveCanvas);
       },
       _isVideoHidden: function(disable, canvas){
         return disable || canvas;
