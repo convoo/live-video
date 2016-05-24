@@ -39,6 +39,11 @@ Example:
         -moz-transform:rotateY(180deg);
       }
       
+      .responsive {
+        width: 100%;
+        height: auto;
+      }
+      
       .grayscale {
         filter: grayscale(100%);
         -webkit-filter: grayscale(100%);
@@ -260,6 +265,14 @@ Example:
         hideCanvas: {
           type: Boolean,
           computed: "_isCanvasHidden(disable, canvas)"
+        },
+        /**
+         * `responsive` determines whether the video element changes size depending on its parent element
+         */
+        responsive: {
+          type: Boolean,
+          value: false,
+          observer: "_responsiveChanged"
         }
       },
       
@@ -355,6 +368,15 @@ Example:
         }
         if(newVal != "" && typeof(newVal) != 'undefined'){
           this.$.liveCanvas.classList.add(newVal);
+        }
+      },
+      _responsiveChanged: function(newVal, oldVal){
+        if(newVal){
+          this.$.liveVideo.classList.add("responsive");
+          this.$.liveCanvas.classList.add("responsive");
+        }else {
+          this.$.liveVideo.classList.remove("responsive");
+          this.$.liveCanvas.classList.remove("responsive");
         }
       },
       _isVideoHidden: function(disable, canvas){
