@@ -422,16 +422,15 @@ Example:
         
         var dividendHeight =  videoHeight / parentHeight;
         var dividendWidth = videoWidth /  parentWidth;
-        var height, width, left, top;
+        // Random instantiation  
+        var height = 100, width = 100, left = 0, top = 0;
         
         if (dividendHeight < dividendWidth){
-          console.log('HEIGHT CONTRAINT');
           height = parentHeight;
           width = height / aspectRatio;
           left = Math.abs((parentWidth - width) / 2) * -1;
           top = 0;
         } else {
-          console.log('WIDTH CONTRAINT');
           width = parentWidth;
           height = width * aspectRatio;
           top = Math.abs((parentHeight - height) / 2) * -1;
@@ -454,8 +453,8 @@ Example:
         
         this.customStyle['--fullbleed-top'] = top.toString()+'px';
         this.customStyle['--fullbleed-left'] = left.toString()+'px';
-        this.customStyle['--fullbleed-width'] = (width).toString()+'px';
-        this.customStyle['--fullbleed-height'] = (height).toString()+'px';
+        this.customStyle['--fullbleed-width'] = width.toString()+'px';
+        this.customStyle['--fullbleed-height'] = height.toString()+'px';
         this.updateStyles();
         
         this.toggleClass("fullbleed", newVal, this.$.liveVideo);
