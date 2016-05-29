@@ -402,66 +402,65 @@ Example:
         this.toggleClass("responsive", newVal, this.$.liveCanvas);
       },
       _fullbleedChanged: function(newVal, oldVal){
-                
-      if(this.parentNode.clientHeight && this.parentNode.clientWidth){
-        var parentHeight = this.parentNode.clientHeight;
-        var parentWidth = this.parentNode.clientWidth;
-
-        // video source
-        var videoHeight = this.$.liveVideo.videoHeight;
-        var videoWidth = this.$.liveVideo.videoWidth;
-        var aspectRatio = videoHeight / videoWidth;
-        
-        // all sides of the video must be in contact wth the outer div
-        // the height or width will be cropped
-        // the aspect ratio will be maintained
-        
-        // Constraining Height or Constraining Width is determined by...
-        // it is Constraining Height when the the height is 100% and the calculated width is greater than the ourter container width.
-        // it is Constraining Width when the the width is 100% and the calculated height is greater than the ourter container height.
-        
-        var dividendHeight =  videoHeight / parentHeight;
-        var dividendWidth = videoWidth /  parentWidth;
-        // Random instantiation  
-        var height = 100, width = 100, left = 0, top = 0;
-        
-        if (dividendHeight < dividendWidth){
-          height = parentHeight;
-          width = height / aspectRatio;
-          left = Math.abs((parentWidth - width) / 2) * -1;
-          top = 0;
-        } else {
-          width = parentWidth;
-          height = width * aspectRatio;
-          top = Math.abs((parentHeight - height) / 2) * -1;
-          left = 0;
+        if(this.parentNode.clientHeight && this.parentNode.clientWidth){
+          var parentHeight = this.parentNode.clientHeight;
+          var parentWidth = this.parentNode.clientWidth;
+          
+          // video source
+          var videoHeight = this.$.liveVideo.videoHeight;
+          var videoWidth = this.$.liveVideo.videoWidth;
+          var aspectRatio = videoHeight / videoWidth;
+          
+          // all sides of the video must be in contact wth the outer div
+          // the height or width will be cropped
+          // the aspect ratio will be maintained
+          
+          // Constraining Height or Constraining Width is determined by...
+          // it is Constraining Height when the the height is 100% and the calculated width is greater than the ourter container width.
+          // it is Constraining Width when the the width is 100% and the calculated height is greater than the ourter container height.
+          
+          var dividendHeight =  videoHeight / parentHeight;
+          var dividendWidth = videoWidth /  parentWidth;
+          // Random instantiation  
+          var height = 100, width = 100, left = 0, top = 0;
+          
+          if (dividendHeight < dividendWidth){
+            height = parentHeight;
+            width = height / aspectRatio;
+            left = Math.abs((parentWidth - width) / 2) * -1;
+            top = 0;
+          } else {
+            width = parentWidth;
+            height = width * aspectRatio;
+            top = Math.abs((parentHeight - height) / 2) * -1;
+            left = 0;
+          }
+          
+          // console.log('parentHeight',parentHeight);
+          // console.log('parentWidth',parentWidth);
+          
+          // console.log('videoHeight',videoHeight);
+          // console.log('videoWidth',videoWidth);
+          
+          // console.log('dividendHeight',dividendHeight);
+          // console.log('dividendWidth',dividendWidth);
+          
+          // console.log('height', height);
+          // console.log('width', width);
+          // console.log('top',top);
+          // console.log('left',left);
+          
+          this.customStyle['--fullbleed-top'] = top.toString()+'px';
+          this.customStyle['--fullbleed-left'] = left.toString()+'px';
+          this.customStyle['--fullbleed-width'] = width.toString()+'px';
+          this.customStyle['--fullbleed-height'] = height.toString()+'px';
+          this.updateStyles();
+          
+          this.toggleClass("fullbleed", newVal, this.$.liveVideo);
+          this.toggleClass("fullbleed", newVal, this.$.liveCanvas);
+          this.toggleClass("fullbleedHost", newVal);
+          this.toggleClass("fullbleedHost", newVal);
         }
-        
-        // console.log('parentHeight',parentHeight);
-        // console.log('parentWidth',parentWidth);
-        
-        // console.log('videoHeight',videoHeight);
-        // console.log('videoWidth',videoWidth);
-        
-        // console.log('dividendHeight',dividendHeight);
-        // console.log('dividendWidth',dividendWidth);
-        
-        // console.log('height', height);
-        // console.log('width', width);
-        // console.log('top',top);
-        // console.log('left',left);
-        
-        this.customStyle['--fullbleed-top'] = top.toString()+'px';
-        this.customStyle['--fullbleed-left'] = left.toString()+'px';
-        this.customStyle['--fullbleed-width'] = width.toString()+'px';
-        this.customStyle['--fullbleed-height'] = height.toString()+'px';
-        this.updateStyles();
-        
-        this.toggleClass("fullbleed", newVal, this.$.liveVideo);
-        this.toggleClass("fullbleed", newVal, this.$.liveCanvas);
-        this.toggleClass("fullbleedHost", newVal);
-        this.toggleClass("fullbleedHost", newVal);
-      }  
     },
       _isVideoHidden: function(disable, canvas){
         return disable || canvas;
