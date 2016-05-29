@@ -403,10 +403,10 @@ Example:
       },
       _fullbleedChanged: function(newVal, oldVal){
                 
-        // outer container sizes  - 200 x 100
+      if(this.parentNode.clientHeight && this.parentNode.clientWidth){
         var parentHeight = this.parentNode.clientHeight;
         var parentWidth = this.parentNode.clientWidth;
-        
+
         // video source
         var videoHeight = this.$.liveVideo.videoHeight;
         var videoWidth = this.$.liveVideo.videoWidth;
@@ -461,7 +461,8 @@ Example:
         this.toggleClass("fullbleed", newVal, this.$.liveCanvas);
         this.toggleClass("fullbleedHost", newVal);
         this.toggleClass("fullbleedHost", newVal);
-      },
+      }  
+    },
       _isVideoHidden: function(disable, canvas){
         return disable || canvas;
       },
